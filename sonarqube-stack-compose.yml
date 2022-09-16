@@ -1,0 +1,56 @@
+version: "3.9"  # optional since v1.27.0
+services:
+
+## SONARQUBE
+  sonarqube-server:
+    image: sonarqube:latest
+    platform: linux/x86_64
+    restart: always
+    container_name: sonarqube-server
+    ports:
+      - "9000:9000"
+    depends_on:
+      - sonarqube-postgres
+    volumes:
+      - sonarqube-server_data:/opt/sonarqube/data
+      - sonarqube-server_extensions:/opt/sonarqube/extensions
+      - sonarqube-server_logs:/opt/sonarqube/logs
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://sonarqube-postgres:5432/sonar
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: sonar
+    networks:
+      - sonarqube-network
+  sonarqube-postgres:
+    image: postgres:latest
+    platform: linux/x86_64
+    restart: always
+    container_name: sonarqube-postgres
+    volumes:
+      - sonarqube-postgres:/var/lib/postgresql
+      - sonarqube-postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+      POSTGRES_DB: sonar
+    networks:
+      - sonarqube-network
+
+volumes:
+
+  ## SONARQUBE
+  sonarqube-server_data:
+    name: sonarqube-server_data
+  sonarqube-server_extensions:
+    name: sonarqube-server_extensions
+  sonarqube-server_logs:
+    name: sonarqube-server_logs
+  sonarqube-postgres:
+    name: sonarqube-postgres
+  sonarqube-postgres_data:
+    name: sonarqube-postgres_data
+
+networks:
+  sonarqube-network:
+    name: sonarqube-network
+    driver: bridge

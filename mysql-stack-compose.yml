@@ -1,0 +1,30 @@
+version: "3.9"  # optional since v1.27.0
+services:
+
+  mysql-server:
+    image: mysql:latest
+    platform: linux/x86_64
+    restart: always
+    container_name: mysql-server
+    ports:
+      - "3306:3306"
+      - "33060:33060"
+    volumes:
+      - mysql-server:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: 'Raven123qweasd*+'
+      MYSQL_DATABASE: 'raven-dev'
+      MYSQL_USER: 'raven-dev'
+      MYSQL_PASSWORD: 'raven-dev*+'
+    networks:
+      - mysql-network
+
+volumes:
+  mysql-server:
+    name: mysql-server
+
+networks:
+  mysql-network:
+    name: mysql-network
+    driver: bridge

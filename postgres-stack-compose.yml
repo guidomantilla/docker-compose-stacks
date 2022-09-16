@@ -1,0 +1,30 @@
+version: "3.9"  # optional since v1.27.0
+services:
+
+  postgres-server:
+    image: postgres:latest
+    platform: linux/x86_64
+    restart: always
+    container_name: postgres-server
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-server:/var/lib/postgresql
+      - postgres-server_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: 'raven-dev*+'
+      POSTGRES_USER: 'raven-dev'
+      POSTGRES_DB: 'raven-dev'
+    networks:
+      -  postgres-network
+
+volumes:
+  postgres-server:
+    name: postgres-server
+  postgres-server_data:
+    name: postgres-server_data
+
+networks:
+  postgres-network:
+    name: postgres-network
+    driver: bridge

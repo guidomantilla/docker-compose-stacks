@@ -1,0 +1,32 @@
+version: "3.9"  # optional since v1.27.0
+services:
+
+  jaeger-server:
+    image: jaegertracing/all-in-one:latest
+    platform: linux/x86_64
+    restart: always
+    container_name: jaeger-server
+    ports:
+      - "5775:5775/udp"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "16686:16686"
+      - "14268:14268"
+      - "14250:14250"
+      - "9411:9411"
+    volumes:
+      - jaeger-server_data:/tmp
+    environment:
+      COLLECTOR_ZIPKIN_HOST_PORT: 9411
+    networks:
+      - jaeger-network
+
+volumes:
+  jaeger-server_data:
+    name: jaeger-server_data
+
+networks:
+  jaeger-network:
+    name: jaeger-network
+    driver: bridge
