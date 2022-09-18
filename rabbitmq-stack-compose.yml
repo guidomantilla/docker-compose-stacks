@@ -1,0 +1,43 @@
+version: "3.9"  # optional since v1.27.0
+services:
+
+  rabbitmq-server:
+    image: rabbitmq:latest
+    platform: linux/x86_64
+    restart: always
+    container_name: rabbitmq-server
+    ports:
+      - "5551:5551"   # RabbitMQ Stream protocol with TLS
+      - "5552:5552"   # RabbitMQ Stream protocol without TLS
+      - "5671:5671"   # AMQP protocol with TLS
+      - "5672:5672"   # AMQP protocol without TLS
+      - "15671:15671" # HTTP protocol with TLS
+      - "15672:15672" # HTTP protocol without TLS
+      - "61613:61613" # STOMP protocol without TLS
+      - "61614:61614" # STOMP protocol with TLS
+      - "1883:1883"   # MQTT protocol without TLS
+      - "8883:8883"   # MQTT protocol with TLS
+    volumes:
+      - rabbitmq-server:/etc/rabbitmq/
+      - rabbitmq-server_lib:/var/lib/rabbitmq/
+      - rabbitmq-server_log:/var/log/rabbitmq/
+    environment:
+      RABBITMQ_DEFAULT_PASS: 'raven-dev*+'
+      RABBITMQ_DEFAULT_USER: 'raven-dev'
+      RABBITMQ_DEFAULT_VHOST: "/"
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+    networks:
+      -  rabbitmq-network
+
+volumes:
+  rabbitmq-server:
+    name: rabbitmq-server
+  rabbitmq-server_lib:
+    name: rabbitmq-server_lib
+  rabbitmq-server_log:
+    name: rabbitmq-server_log
+
+networks:
+  rabbitmq-network:
+    name: rabbitmq-network
+    driver: bridge

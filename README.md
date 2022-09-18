@@ -1,6 +1,5 @@
 # docker-compose-stacks
 
-
 ## portainer-stack:
 	docker compose -f portainer-stack-compose.yml -p portainer-stack up --detach
 
@@ -18,3 +17,6 @@
 
 ## postgres-stack:
 	docker compose -f postgres-stack-compose.yml -p postgres-stack up --detach
+
+## rabbitmq-stack:
+docker compose -f rabbitmq-stack-compose.yml -p rabbitmq-stack up --detach
