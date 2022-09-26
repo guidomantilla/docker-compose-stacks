@@ -20,3 +20,6 @@
 
 ## rabbitmq-stack:
 docker compose -f rabbitmq-stack-compose.yml -p rabbitmq-stack up --detach
+
+## nats-stack:
+docker compose -f nats-stack-compose.yml -p nats-stack up --detach
