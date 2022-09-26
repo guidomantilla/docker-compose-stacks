@@ -1,0 +1,20 @@
+version: "3.9"  # optional since v1.27.0
+services:
+
+## nats
+  nats-server:
+    image: nats:latest
+    platform: linux/x86_64
+    restart: always
+    container_name: nats-server
+    ports:
+      - "4222:4222"
+      - "6222:6222"
+      - "8222:8222"
+    networks:
+      - nats-network
+
+networks:
+  nats-network:
+    name: nats-network
+    driver: bridge
