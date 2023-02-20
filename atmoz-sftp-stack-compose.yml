@@ -1,0 +1,28 @@
+version: "3.9"  # optional since v1.27.0
+services:
+
+## sftp
+  sftp-server:
+    image: atmoz/sftp:latest
+    platform: linux/x86_64
+    restart: always
+    container_name: sftp-server
+    ports:
+      - "2222:22"
+    volumes:
+      - sftp-server_upload:/home/user01/upload
+      - sftp-server_download:/home/user01/download
+      - ./atmoz-sftp/users.conf:/etc/sftp/users.conf:ro
+    command: user01:123:1001
+    networks:
+      - sftp-network
+
+volumes:
+  sftp-server_upload:
+    name: sftp-server_upload
+  sftp-server_download:
+    name: sftp-server_download
+networks:
+  sftp-network:
+    name: sftp-network
+    driver: bridge
