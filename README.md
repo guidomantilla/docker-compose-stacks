@@ -15,6 +15,9 @@
 ## nats-stack:
 	docker compose -f nats-stack-compose.yml -p nats-stack up --detach
 
+## oracle-xe-stack:
+	docker compose -f oracle-xe-stack-compose.yml -p oracle-xe-stack up --detach
+
 ## portainer-stack:
 	docker compose -f portainer-stack-compose.yml -p portainer-stack up --detach
 
