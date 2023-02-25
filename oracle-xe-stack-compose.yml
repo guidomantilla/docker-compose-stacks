@@ -1,0 +1,25 @@
+version: "3.9"  # optional since v1.27.0
+services:
+
+  mysql-server:
+    image: gvenzl/oracle-xe:latest
+    platform: linux/x86_64
+    restart: always
+    container_name: oracle-xe-server
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle-xe-server:/opt/oracle/XE21CFULL/oradata
+    environment:
+      ORACLE_PASSWORD: 'SysPassword1'
+    networks:
+      - oracle-xe-network
+
+volumes:
+  oracle-xe-server:
+    name: oracle-xe-server
+
+networks:
+  oracle-xe-network:
+    name: oracle-xe-network
+    driver: bridge
