@@ -12,12 +12,12 @@ services:
     environment:
       REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
       REGISTRY_AUTH: htpasswd
-      REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
-      REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+      REGISTRY_AUTH_HTPASSWD_REALM: Registry
+      REGISTRY_AUTH_HTPASSWD_PATH: /auth/registry.password
     volumes:
       - docker-registry-server_data:/data
       - docker-registry-server_registry:/var/lib/registry
-      - docker-registry-server_auth:/auth
+      - ./docker-registry:/auth
     networks:
       - docker-registry-network
 
@@ -26,8 +26,6 @@ volumes:
     name: docker-registry-server_data
   docker-registry-server_registry:
     name: docker-registry-server_registry
-  docker-registry-server_auth:
-    name: docker-registry-server_auth
 
 networks:
   docker-registry-network:
