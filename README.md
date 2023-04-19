@@ -3,6 +3,9 @@
 ## atmoz-sftp-stack:
 	docker compose -f atmoz-sftp-stack-compose.yml -p atmoz-sftp-stack up --detach
 
+## docker-registry-stack:
+	docker compose -f docker-registry-stack-compose.yml -p docker-registry-stack up --detach
+
 ## jaeger-stack:
 	docker compose -f jaeger-stack-compose.yml -p jaeger-stack up --detach
 
