@@ -1,0 +1,26 @@
+version: "3.9"  # optional since v1.27.0
+services:
+
+## docker-registry-server
+  docker-registry-server:
+    image: registry:latest
+    platform: linux/x86_64
+    restart: always
+    container_name: docker-registry-server
+    ports:
+      - "5000:5000"
+    environment:
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+    volumes:
+      - docker-registry-server_data:/data
+    networks:
+      - docker-registry-network
+
+volumes:
+  docker-registry-server_data:
+    name: docker-registry-server_data
+
+networks:
+  docker-registry-network:
+    name: docker-registry-network
+    driver: bridge
