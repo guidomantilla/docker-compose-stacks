@@ -161,6 +161,33 @@ services:
       KSQL_KSQL_SERVICE_ID: kafka-ksqldb_
     networks:
       - kafka-network
+  kafka-conduktor-platform:
+    image: conduktor/conduktor-platform:latest
+    platform: linux/x86_64
+    restart: always
+    container_name: kafka-conduktor-platform
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kafka-broker
+      - kafka-schema-registry
+      - kafka-connect
+    volumes:
+      - kafka-conduktor-platform_data:/var/conduktor
+    environment:
+      CDK_ORGANIZATION_NAME: "demo"
+      CDK_ADMIN_EMAIL: "admin@admin.io"
+      CDK_ADMIN_PASSWORD: "admin"
+      CDK_CLUSTERS_0_ID: "default"
+      CDK_CLUSTERS_0_NAME: "My Local Kafka Cluster"
+      CDK_CLUSTERS_0_COLOR: "#0013E7"
+      CDK_CLUSTERS_0_BOOTSTRAPSERVERS: "PLAINTEXT://kafka-broker:19092"
+      CDK_CLUSTERS_0_SCHEMAREGISTRY_URL: "http://kafka-schema-registry:8081"
+      CDK_CLUSTERS_0_KAFKACONNECTS_0_URL: "http://kafka-connect:8083"
+      CDK_CLUSTERS_0_KAFKACONNECTS_0_NAME: "full stack kafka connect"
+    networks:
+      - kafka-network
+
 volumes:
 
   ## KAFKA
@@ -184,6 +211,8 @@ volumes:
     name: kafka-connect_kafka_secrets
   kafka-connect_kafka_data:
     name: kafka-connect_kafka_data
+  kafka-conduktor-platform_data:
+    name: kafka-conduktor-platform_data
 
 networks:
   kafka-network:
