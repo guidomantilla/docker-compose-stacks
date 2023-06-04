@@ -4,7 +4,7 @@ services:
   portainer-agent:
     image: portainer/agent:latest
     platform: linux/x86_64
-    restart: always
+    restart: unless-stopped
     container_name: portainer-agent
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -19,7 +19,7 @@ services:
   portainer-server:
     image: portainer/portainer-ce:latest
     platform: linux/x86_64
-    restart: always
+    restart: unless-stopped
     container_name: portainer-server
     ports:
       - "8000:8000"

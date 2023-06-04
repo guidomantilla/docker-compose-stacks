@@ -4,7 +4,7 @@ services:
   mysql-server:
     image: gvenzl/oracle-xe:latest
     platform: linux/x86_64
-    restart: always
+    restart: unless-stopped
     container_name: oracle-xe-server
     ports:
       - "1521:1521"

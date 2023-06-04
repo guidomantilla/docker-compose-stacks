@@ -4,7 +4,7 @@ services:
   rabbitmq-server:
     image: rabbitmq:latest
     platform: linux/x86_64
-    restart: always
+    restart: unless-stopped
     container_name: rabbitmq-server
     ports:
       - "5551:5551"   # RabbitMQ Stream protocol with TLS

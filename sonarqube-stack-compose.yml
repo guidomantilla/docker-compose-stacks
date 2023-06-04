@@ -5,7 +5,7 @@ services:
   sonarqube-server:
     image: sonarqube:latest
     platform: linux/x86_64
-    restart: always
+    restart: unless-stopped
     container_name: sonarqube-server
     ports:
       - "9001:9000"
@@ -24,7 +24,7 @@ services:
   sonarqube-postgres:
     image: postgres:latest
     platform: linux/x86_64
-    restart: always
+    restart: unless-stopped
     container_name: sonarqube-postgres
     volumes:
       - sonarqube-postgres:/var/lib/postgresql
