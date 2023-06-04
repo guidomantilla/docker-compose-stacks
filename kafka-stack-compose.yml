@@ -120,9 +120,9 @@ services:
       CONNECT_BOOTSTRAP_SERVERS: "kafka-broker:19092"
       CONNECT_REST_PORT: 8083
       CONNECT_GROUP_ID: compose-connect-group
-      CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-configs
-      CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-offsets
-      CONNECT_STATUS_STORAGE_TOPIC: docker-connect-status
+      CONNECT_CONFIG_STORAGE_TOPIC: kafka-connect-configs
+      CONNECT_OFFSET_STORAGE_TOPIC: kafka-connect-offsets
+      CONNECT_STATUS_STORAGE_TOPIC: kafka-connect-status
       CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
       CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: 'http://kafka-schema-registry:8081'
       CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
@@ -174,6 +174,7 @@ services:
       - kafka-connect
     volumes:
       - kafka-conduktor-platform_data:/var/conduktor
+      - kafka-conduktor-platform_tmp:/tmp
     environment:
       CDK_ORGANIZATION_NAME: "demo"
       CDK_ADMIN_EMAIL: "admin@admin.io"
@@ -213,6 +214,8 @@ volumes:
     name: kafka-connect_kafka_data
   kafka-conduktor-platform_data:
     name: kafka-conduktor-platform_data
+  kafka-conduktor-platform_tmp:
+    name: kafka-conduktor-platform_tmp
 
 networks:
   kafka-network:
