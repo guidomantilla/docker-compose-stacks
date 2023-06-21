@@ -10,12 +10,15 @@ services:
       - "27017:27017"
     volumes:
       - mongo-server_data:/data/db
+      - mongo-server_configdb:/data/configdb
     networks:
       - mongo-network
 
 volumes:
   mongo-server_data:
     name: mongo-server_data
+  mongo-server_configdb:
+    name: mongo-server_configdb
 
 networks:
   mongo-network:
