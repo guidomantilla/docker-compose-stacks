@@ -12,7 +12,7 @@ services:
       - postgres-server:/var/lib/postgresql
       - postgres-server_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: 'raven-dev*+'
+      POSTGRES_PASSWORD: 'Raven123qweasd*+'
       POSTGRES_USER: 'raven-dev'
       POSTGRES_DB: 'raven-dev'
     networks:
