@@ -1,4 +1,3 @@
-version: "3.9"  # optional since v1.27.0
 services:
   ## KAFKA
   kafka-zookeeper:
@@ -161,11 +160,26 @@ services:
       KSQL_KSQL_SERVICE_ID: kafka-ksqldb_
     networks:
       - kafka-network
-  kafka-conduktor-platform:
-    image: conduktor/conduktor-platform:latest
+  kafka-conduktor-postgres:
+    image: postgres:latest
     platform: linux/x86_64
     restart: unless-stopped
-    container_name: kafka-conduktor-platform
+    container_name: kafka-conduktor-postgres
+    volumes:
+      - kafka-conduktor-postgres:/var/lib/postgresql
+      - kafka-conduktor-postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: 'conduktor-console'
+      POSTGRES_USER: 'conduktor'
+      POSTGRES_PASSWORD: 'Raven123qweasd*+'
+      POSTGRES_HOST_AUTH_METHOD: 'scram-sha-256'
+    networks:
+      - kafka-network
+  kafka-conduktor-console:
+    image: conduktor/conduktor-console:1.23.0
+    platform: linux/x86_64
+    restart: unless-stopped
+    container_name: kafka-conduktor-console
     ports:
       - "8080:8080"
     depends_on:
@@ -173,12 +187,9 @@ services:
       - kafka-schema-registry
       - kafka-connect
     volumes:
-      - kafka-conduktor-platform_data:/var/conduktor
-      - kafka-conduktor-platform_tmp:/tmp
+      - kafka-conduktor-console_data:/var/conduktor
+      - kafka-conduktor-console_tmp:/tmp
     environment:
-      CDK_ORGANIZATION_NAME: "demo"
-      CDK_ADMIN_EMAIL: "admin@admin.io"
-      CDK_ADMIN_PASSWORD: "admin"
       CDK_CLUSTERS_0_ID: "default"
       CDK_CLUSTERS_0_NAME: "My Local Kafka Cluster"
       CDK_CLUSTERS_0_COLOR: "#0013E7"
@@ -186,6 +197,7 @@ services:
       CDK_CLUSTERS_0_SCHEMAREGISTRY_URL: "http://kafka-schema-registry:8081"
       CDK_CLUSTERS_0_KAFKACONNECTS_0_URL: "http://kafka-connect:8083"
       CDK_CLUSTERS_0_KAFKACONNECTS_0_NAME: "full stack kafka connect"
+      CDK_DATABASE_URL: "postgresql://conduktor:Raven123qweasd*+@kafka-conduktor-postgres:5432/conduktor-console"
     networks:
       - kafka-network
 
@@ -212,10 +224,14 @@ volumes:
     name: kafka-connect_kafka_secrets
   kafka-connect_kafka_data:
     name: kafka-connect_kafka_data
-  kafka-conduktor-platform_data:
-    name: kafka-conduktor-platform_data
-  kafka-conduktor-platform_tmp:
-    name: kafka-conduktor-platform_tmp
+  kafka-conduktor-postgres:
+    name: kafka-conduktor-postgres
+  kafka-conduktor-postgres_data:
+    name: kafka-conduktor-postgres_data
+  kafka-conduktor-console_data:
+    name: kafka-conduktor-console_data
+  kafka-conduktor-console_tmp:
+    name: kafka-conduktor-console_tmp
 
 networks:
   kafka-network:

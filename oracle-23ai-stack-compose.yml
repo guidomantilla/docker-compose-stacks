@@ -1,0 +1,31 @@
+services:
+
+  oracle-23ai-server:
+    image: container-registry.oracle.com/database/free:latest
+    platform: linux/x86_64
+    restart: unless-stopped
+    container_name: oracle-23ai-server
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+    volumes:
+      - oracle-23ai-server_oradata:/opt/oracle/oradata
+      - oracle-23ai-server_startup:/opt/oracle/scripts/startup
+      - oracle-23ai-server_setup:/opt/oracle/scripts/setup
+    environment:
+      ORACLE_PWD: 'SysPassword1'
+    networks:
+      - oracle-23ai-network
+
+volumes:
+  oracle-23ai-server_oradata:
+    name: oracle-23ai-server_oradata
+  oracle-23ai-server_startup:
+    name: oracle-21c-server_startup
+  oracle-23ai-server_setup:
+    name: oracle-23ai-server_setup
+    
+networks:
+  oracle-23ai-network:
+    name: oracle-23ai-network
+    driver: bridge
