@@ -51,3 +51,7 @@
 ## sonarqube-stack:
 	docker compose -f sonarqube-stack-compose.yml -p sonarqube-stack up --detach
 * Ports: 9001
+
+## hasura-stack:
+	docker compose -f hasura-stack-compose.yml -p hasura-stack up --detach
+* Ports: 5433, 8084, 8085
