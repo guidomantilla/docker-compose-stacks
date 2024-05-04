@@ -13,6 +13,7 @@ install:
 	docker compose -f atmoz-sftp-stack-compose.yml -p atmoz-sftp-stack up --detach
 	docker compose -f jaeger-stack-compose.yml -p jaeger-stack up --detach
 	docker compose -f sonarqube-stack-compose.yml -p sonarqube-stack up --detach
+	docker compose -f hasura-stack-compose.yml -p hasura-stack up --detach
 	
 delete:
 	
