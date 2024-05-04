@@ -14,3 +14,5 @@ install:
 	docker compose -f jaeger-stack-compose.yml -p jaeger-stack up --detach
 	docker compose -f sonarqube-stack-compose.yml -p sonarqube-stack up --detach
 	
+delete:
+	

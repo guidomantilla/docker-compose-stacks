@@ -1,7 +1,7 @@
 services:
 
   portainer-agent:
-    image: portainer/agent:latest
+    image: portainer/agent:2.20.1
     platform: linux/x86_64
     restart: unless-stopped
     container_name: portainer-agent
@@ -16,7 +16,7 @@ services:
       - portainer-server
 
   portainer-server:
-    image: portainer/portainer-ce:latest
+    image: portainer/portainer-ce:2.20.1
     platform: linux/x86_64
     restart: unless-stopped
     container_name: portainer-server
