@@ -1,0 +1,26 @@
+services:
+  vertica-server:
+    image: vertica/vertica-ce:latest
+    platform: linux/x86_64
+    restart: unless-stopped
+    container_name: vertica-server
+    ports:
+      - "5434:5433"
+      - "5444:5444"
+    volumes:
+      - vertica-server_data:/data
+    environment:
+      APP_DB_USER: "root"
+      APP_DB_PASSWORD: "vertica"
+      TZ: "America/Bogota"
+    networks:
+      - vertica-network
+
+volumes:
+  vertica-server_data:
+    name: vertica-server_data
+
+networks:
+  vertica-network:
+    name: vertica-network
+    driver: bridge

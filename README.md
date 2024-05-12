@@ -55,3 +55,7 @@
 ## hasura-stack:
 	docker compose -f hasura-stack-compose.yml -p hasura-stack up --detach
 * Ports: 5433, 8084, 8085
+
+## vertica-stack:
+	docker compose -f vertica-stack-compose.yml -p vertica-stack up --detach
+* Ports: 5434, 5444
