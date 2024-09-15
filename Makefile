@@ -15,5 +15,6 @@ install:
 	docker compose -f sonarqube-stack-compose.yml -p sonarqube-stack up --detach
 	docker compose -f hasura-stack-compose.yml -p hasura-stack up --detach
 	
-delete:
+enable:
+	docker exec rabbitmq-server rabbitmq-plugins enable rabbitmq_stream rabbitmq_stream_management rabbitmq_management
 	
