@@ -25,6 +25,7 @@ services:
       RABBITMQ_DEFAULT_USER: 'raven-dev'
       RABBITMQ_DEFAULT_VHOST: "/"
       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: "-rabbitmq_stream advertised_host rabbitmq-server-linode"
     networks:
       -  rabbitmq-network
 
