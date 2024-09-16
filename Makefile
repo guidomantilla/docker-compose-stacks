@@ -32,4 +32,13 @@ update:
 
 enable:
 	docker exec rabbitmq-server rabbitmq-plugins enable rabbitmq_stream rabbitmq_stream_management rabbitmq_management
-	
+
+certificates:
+	openssl genrsa -passout pass:1111 -des3 -out ca.key 4096
+	openssl req -passin pass:1111 -new -x509 -days 3650 -key ca.key -out ca.crt -subj "/CN=$(SERVER_CN)"
+	openssl genrsa -passout pass:1111 -des3 -out server.key 4096
+	openssl req -passin pass:1111 -new -key server.key -out server.csr -subj "/CN=$(SERVER_CN)" -config $(OPENSSLCNF)
+	openssl x509 -req -passin pass:1111 -days 3650 -in server.csr -CA ca.crt -CAkey ca.key -set_serial 01 -out server.crt -extensions v3_req -extfile /opt/homebrew/etc/openssl@3/openssl.cnf
+	openssl pkcs8 -topk8 -nocrypt -passin pass:1111 -in server.key -out server.pem
+	openssl req -newkey rsa:2048 -nodes -keyout rabbitmq-key.pem -x509 -days 365 -out rabbitmq-cert.pem
+
