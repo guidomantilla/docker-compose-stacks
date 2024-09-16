@@ -14,6 +14,7 @@ install: update
 	docker compose -f jaeger-stack-compose.yml -p jaeger-stack up --detach --remove-orphans
 	docker compose -f sonarqube-stack-compose.yml -p sonarqube-stack up --detach --remove-orphans
 	docker compose -f hasura-stack-compose.yml -p hasura-stack up --detach --remove-orphans
+	docker image prune -f
 
 update:
 	docker compose -f portainer-stack-compose.yml -p portainer-stack pull
@@ -28,7 +29,6 @@ update:
 	docker compose -f jaeger-stack-compose.yml -p jaeger-stack pull
 	docker compose -f sonarqube-stack-compose.yml -p sonarqube-stack pull
 	docker compose -f hasura-stack-compose.yml -p hasura-stack pull
-	docker image prune
 
 enable:
 	docker exec rabbitmq-server rabbitmq-plugins enable rabbitmq_stream rabbitmq_stream_management rabbitmq_management
