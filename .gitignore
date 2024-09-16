@@ -28,3 +28,7 @@ vendor/
 
 # Sonarqube
 .scannerwork/
+*.crt
+*.key
+*.pem
+*.csr
