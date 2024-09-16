@@ -31,7 +31,7 @@ update:
 	docker compose -f hasura-stack-compose.yml -p hasura-stack pull
 
 enable:
-	docker exec rabbitmq-server rabbitmq-plugins enable rabbitmq_stream rabbitmq_stream_management rabbitmq_management
+	docker exec rabbitmq-server rabbitmq-plugins enable rabbitmq_stream rabbitmq_stream_management rabbitmq_management rabbitmq_amqp1_0 abbitmq_auth_mechanism_ssl
 
 certificates:
 	openssl genrsa -passout pass:1111 -des3 -out ca.key 4096
