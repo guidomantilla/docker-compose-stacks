@@ -4,6 +4,7 @@ phony-goal: ; @echo $@3
 uninstall:
 	docker compose -f nats-stack-compose.yml -p nats-stack down --volumes --remove-orphans --rmi all
 	#docker compose -f kafka-full-stack-compose.yml -p kafka-full-stack down --volumes --remove-orphans --rmi all
+	#docker compose -f kafka-single-stack-compose.yml -p kafka-single-stack down --volumes --remove-orphans --rmi all
 	docker compose -f atmoz-sftp-stack-compose.yml -p atmoz-sftp-stack down --volumes --remove-orphans --rmi all
 	docker compose -f hasura-stack-compose.yml -p hasura-stack down --volumes --remove-orphans --rmi all
 	docker image prune -f
@@ -17,6 +18,7 @@ install: uninstall update
 	#docker compose -f nats-stack-compose.yml -p nats-stack up --detach --remove-orphans
 	docker compose -f rabbitmq-stack-compose.yml -p rabbitmq-stack up --detach --remove-orphans
 	#docker compose -f kafka-full-stack-compose.yml -p kafka-full-stack up --detach --remove-orphans
+	docker compose -f kafka-single-stack-compose.yml -p kafka-single-stack up --detach --remove-orphans
 	#docker compose -f atmoz-sftp-stack-compose.yml -p atmoz-sftp-stack up --detach --remove-orphans
 	docker compose -f jaeger-stack-compose.yml -p jaeger-stack up --detach --remove-orphans
 	docker compose -f sonarqube-stack-compose.yml -p sonarqube-stack up --detach --remove-orphans
@@ -32,6 +34,7 @@ update:
 	#docker compose -f nats-stack-compose.yml -p nats-stack pull
 	docker compose -f rabbitmq-stack-compose.yml -p rabbitmq-stack pull
 	#docker compose -f kafka-full-stack-compose.yml -p kafka-full-stack pull
+	docker compose -f kafka-single-stack-compose.yml -p kafka-single-stack pull
 	#docker compose -f atmoz-sftp-stack-compose.yml -p atmoz-sftp-stack pull
 	docker compose -f jaeger-stack-compose.yml -p jaeger-stack pull
 	docker compose -f sonarqube-stack-compose.yml -p sonarqube-stack pull
