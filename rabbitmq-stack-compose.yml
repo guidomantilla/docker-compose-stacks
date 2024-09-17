@@ -24,6 +24,7 @@ services:
       RABBITMQ_DEFAULT_PASS: 'raven-dev*+'
       RABBITMQ_DEFAULT_USER: 'raven-dev'
       RABBITMQ_DEFAULT_VHOST: "/"
+      RABBITMQ_NODENAME: "ubuntu-us-southeast"
       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
     networks:
       -  rabbitmq-network
