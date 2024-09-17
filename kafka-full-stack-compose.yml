@@ -1,5 +1,4 @@
 services:
-  ## KAFKA
   kafka-zookeeper:
     image: confluentinc/cp-zookeeper:latest
     platform: linux/x86_64
@@ -203,8 +202,6 @@ services:
       - kafka-network
 
 volumes:
-
-  ## KAFKA
   kafka-zookeeper_secrets:
     name: kafka-zookeeper_secrets
   kafka-zookeeper_data:
