@@ -3,7 +3,7 @@ phony-goal: ; @echo $@3
 
 uninstall:
 	docker compose -f nats-stack-compose.yml -p nats-stack down --volumes --remove-orphans --rmi all
-	docker compose -f kafka-full-stack-compose.yml -p kafka-full-stack down --volumes --remove-orphans --rmi all
+	#docker compose -f kafka-full-stack-compose.yml -p kafka-full-stack down --volumes --remove-orphans --rmi all
 	docker compose -f atmoz-sftp-stack-compose.yml -p atmoz-sftp-stack down --volumes --remove-orphans --rmi all
 	docker compose -f hasura-stack-compose.yml -p hasura-stack down --volumes --remove-orphans --rmi all
 	docker image prune -f
