@@ -32,3 +32,5 @@ vendor/
 *.key
 *.pem
 *.csr
+*.crl
+*.p12

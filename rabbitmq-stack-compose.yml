@@ -21,10 +21,10 @@ services:
       - rabbitmq-server_lib:/var/lib/rabbitmq/
       - rabbitmq-server_log:/var/log/rabbitmq/
     environment:
-      RABBITMQ_DEFAULT_PASS: 'raven-dev*+'
-      RABBITMQ_DEFAULT_USER: 'raven-dev'
+      RABBITMQ_DEFAULT_PASS: '${RABBITMQ_DEFAULT_PASS}'
+      RABBITMQ_DEFAULT_USER: '${RABBITMQ_DEFAULT_USER}'
       RABBITMQ_DEFAULT_VHOST: "/"
-      RABBITMQ_NODENAME: "ubuntu-us-southeast"
+      RABBITMQ_NODENAME: "${RABBITMQ_NODENAME}"
       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
     networks:
       -  rabbitmq-network
