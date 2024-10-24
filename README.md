@@ -1,5 +1,16 @@
 # docker-compose-stacks
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=guidomantilla_docker-compose-stacks&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=guidomantilla_docker-compose-stacks)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=guidomantilla_docker-compose-stacks&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=guidomantilla_docker-compose-stacks)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=guidomantilla_docker-compose-stacks&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=guidomantilla_docker-compose-stacks)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=guidomantilla_docker-compose-stacks&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=guidomantilla_docker-compose-stacks)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=guidomantilla_docker-compose-stacks&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=guidomantilla_docker-compose-stacks)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=guidomantilla_docker-compose-stacks&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=guidomantilla_docker-compose-stacks)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=guidomantilla_docker-compose-stacks&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=guidomantilla_docker-compose-stacks)
+
+
+
+
+
 
 ## atmoz-sftp-stack:
 	docker compose -f atmoz-sftp-stack-compose.yml -p atmoz-sftp-stack up --detach
@@ -60,3 +71,6 @@
 ## vertica-stack:
 	docker compose -f vertica-stack-compose.yml -p vertica-stack up --detach
 * Ports: 5434, 5444
+
+
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg)](https://sonarcloud.io/summary/new_code?id=guidomantilla_docker-compose-stacks)
