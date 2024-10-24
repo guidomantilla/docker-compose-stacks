@@ -1,4 +1,5 @@
 # docker-compose-stacks
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=guidomantilla_docker-compose-stacks&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=guidomantilla_docker-compose-stacks)
 
 ## atmoz-sftp-stack:
 	docker compose -f atmoz-sftp-stack-compose.yml -p atmoz-sftp-stack up --detach
