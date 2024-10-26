@@ -11,7 +11,7 @@ services:
       - mongo-server_data:/data/db
       - mongo-server_configdb:/data/configdb
     environment:
-      MONGO_INITDB_ROOT_USERNAME: 'raven-dev'
+      MONGO_INITDB_ROOT_USERNAME: 'root'
       MONGO_INITDB_ROOT_PASSWORD: 'Raven123qweasd*+'
     networks:
       - mongo-network
