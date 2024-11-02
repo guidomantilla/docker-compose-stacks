@@ -24,6 +24,7 @@ install: uninstall update
 	#docker compose -f sonarqube-stack-compose.yml -p sonarqube-stack up --detach --remove-orphans
 	#docker compose -f hasura-stack-compose.yml -p hasura-stack up --detach --remove-orphans
 	docker compose -f vertica-stack-compose.yml -p vertica-stack up --detach --remove-orphans
+	docker compose -f cassandra-stack-compose.yml -p cassandra-stack up --detach --remove-orphans
 	docker image prune -f
 
 update:
@@ -41,6 +42,7 @@ update:
 	#docker compose -f sonarqube-stack-compose.yml -p sonarqube-stack pull
 	#docker compose -f hasura-stack-compose.yml -p hasura-stack pull
 	docker compose -f vertica-stack-compose.yml -p vertica-stack pull
+	docker compose -f cassandra-stack-compose.yml -p cassandra-stack pull
 
 enable:
 	docker exec rabbitmq-server rabbitmq-plugins enable rabbitmq_stream rabbitmq_stream_management rabbitmq_management rabbitmq_amqp1_0 rabbitmq_auth_mechanism_ssl
