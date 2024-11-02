@@ -1,12 +1,12 @@
 services:
 
   cassandra-server:
-    image: cassandra:latest
+    image: cassandra:4
     platform: linux/x86_64
-    restart: unless-stopped
+    ##restart: unless-stopped
     container_name: cassandra-server
     ports:
-      - "7000:7000"
+      - "7001:7000"
       - "9042:9042"
     volumes:
       - cassandra-server:/var/lib/cassandra:rw
@@ -17,6 +17,8 @@ services:
       - CASSANDRA_CLUSTER_NAME=cluster
       - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
       - CASSANDRA_DC=datacenter
+      - MAX_HEAP_SIZE=1G
+      - HEAP_NEWSIZE=256M
     networks:
       - cassandra-network
     healthcheck:
