@@ -21,7 +21,7 @@ volumes:
   oracle-23ai-server_oradata:
     name: oracle-23ai-server_oradata
   oracle-23ai-server_startup:
-    name: oracle-21c-server_startup
+    name: oracle-23ai-server_startup
   oracle-23ai-server_setup:
     name: oracle-23ai-server_setup
     
