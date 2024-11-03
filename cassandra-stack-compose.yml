@@ -9,7 +9,8 @@ services:
       - "7001:7000"
       - "9042:9042"
     volumes:
-      - cassandra-server:/var/lib/cassandra:rw
+      - cassandra-server_data:/var/lib/cassandra:rw
+      - cassandra-server_conf:/etc/cassandra:rw
     environment:
       - CASSANDRA_START_RPC=true       # default
       - CASSANDRA_RPC_ADDRESS=0.0.0.0  # default
@@ -29,9 +30,10 @@ services:
       retries: 3
 
 volumes:
-  cassandra-server:
-    name: cassandra-server
-
+  cassandra-server_data:
+    name: cassandra-server_data
+  cassandra-server_conf:
+    name: cassandra-server_conf
 networks:
   cassandra-network:
     name: cassandra-network
